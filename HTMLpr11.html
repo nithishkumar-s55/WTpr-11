@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARTSPHERE - Practicum 9 and 10</title>
+
+<style>
+:root {
+    --background: #eee9ff;
+    --primary: #6941a5;
+    --deep: #493477;
+    --accent: #8b5cc7;
+    --light: #f3e8ff;
+    --text: #292344;
+    --white: #ffffff;
+    --border: #ded2f0;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* HEADER */
+header {
+    background: var(--deep);
+    text-align: center;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 12px rgba(73, 52, 119, 0.2);
+}
+
+header h1 {
+    color: white;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+header p {
+    color: #e4d5ff;
+    margin: 5px 0 12px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #d9bfff;
+    text-decoration: underline;
+}
+
+/* DROPDOWN */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown button {
+    background: none;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 0 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown button:hover {
+    background: none;
+    color: #d9bfff;
+    text-decoration: underline;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: white;
+    box-shadow: 0 3px 12px rgba(73, 52, 119, 0.2);
+    text-align: left;
+    z-index: 101;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 9px 12px;
+    margin: 0;
+    color: var(--deep);
+}
+
+.dropdown-content a:hover {
+    background: var(--light);
+    color: var(--primary);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+/* AUDIO */
+.music {
+    background: var(--white);
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.music p {
+    margin: 5px;
+    color: var(--deep);
+    font-weight: bold;
+}
+
+.music audio {
+    max-width: 100%;
+}
+
+/* ANNOUNCEMENT */
+.announcement {
+    background: var(--primary);
+    color: white;
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.announcement-track {
+    display: inline-block;
+    min-width: 100%;
+    animation: slideText 14s linear infinite;
+}
+
+.announcement-track span {
+    display: inline-block;
+    padding-left: 100%;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+@keyframes slideText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ANIMATION CONTROLS */
+.animation-controls {
+    background: var(--light);
+    text-align: center;
+    padding: 10px;
+}
+
+.animation-controls button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    margin: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.animation-controls button:hover {
+    background: var(--deep);
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+    background: var(--deep);
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.65;
+    animation: bannerZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes bannerZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+}
+
+.hero-content {
+    position: absolute;
+    left: 7%;
+    bottom: 28px;
+    z-index: 2;
+    color: white;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+.hero-content h2 {
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.1;
+    margin: 0 0 8px;
+}
+
+.hero-content p {
+    font-size: 17px;
+}
+
+/* PULSING BADGE */
+.live-tag {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    z-index: 3;
+    background: var(--accent);
+    color: white;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    animation: pulseBadge 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(139, 92, 199, 0);
+    }
+    50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 15px rgba(139, 92, 199, 0.8);
+    }
+}
+
+/* PAGE LAYOUT */
+.page-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    width: 94%;
+    max-width: 1250px;
+    margin: 25px auto;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: white;
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 3px 12px rgba(73, 52, 119, 0.1);
+    position: sticky;
+    top: 145px;
+}
+
+.sidebar h2 {
+    color: var(--primary);
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: var(--text);
+    padding: 8px 0;
+    text-decoration: none;
+    border-bottom: 1px solid #eee7fa;
+}
+
+.sidebar a:hover {
+    color: var(--accent);
+    padding-left: 5px;
+}
+
+.main-content {
+    min-width: 0;
+    flex: 1;
+}
+
+/* SECTION HEADINGS */
+.section-heading {
+    border-left: 5px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 15px;
+    color: var(--deep);
+}
+
+/* MEDIA */
+.media {
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* STATISTICS */
+.feature-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 22px 0;
+}
+
+.feature {
+    flex: 1 1 150px;
+    background: white;
+    padding: 15px;
+    border-radius: 7px;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 3px 10px rgba(73, 52, 119, 0.08);
+}
+
+.feature strong {
+    display: block;
+    font-size: 22px;
+    color: var(--primary);
+}
+
+/* MEDIA BOXES */
+.box {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 1% 18px 0;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(73, 52, 119, 0.1);
+}
+
+.box h3 {
+    margin: 0 0 10px;
+    color: var(--primary);
+}
+
+.box iframe,
+.box video {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    display: block;
+    border-radius: 5px;
+}
+
+.media-tag {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 2;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    padding: 4px 7px;
+    border-radius: 3px;
+}
+
+/* GALLERY */
+.gallery-section {
+    width: 100%;
+    margin: 28px auto;
+}
+
+.gallery-intro {
+    color: #655b79;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.gallery-card {
+    min-width: 0;
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(73, 52, 119, 0.1);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 22px rgba(73, 52, 119, 0.2);
+}
+
+.gallery-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--deep);
+    overflow: hidden;
+}
+
+.gallery-open img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-open:hover img,
+.gallery-open:focus-visible img {
+    transform: scale(1.08);
+}
+
+.gallery-caption {
+    padding: 12px 14px;
+    margin: 0;
+    font-weight: bold;
+    color: var(--deep);
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(30, 20, 50, 0.94);
+}
+
+.lightbox.open {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.lightbox-image {
+    display: block;
+    max-width: 100%;
+    max-height: 75vh;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.lightbox-caption {
+    margin: 12px 0 0;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    padding: 5px 12px;
+    background: var(--accent);
+    color: white;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.gallery-open:focus-visible,
+.lightbox-close:focus-visible {
+    outline: 3px solid #d9bfff;
+    outline-offset: 3px;
+}
+
+/* ART UPDATES */
+.art-card {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    margin: 18px 0;
+    border-left: 5px solid var(--primary);
+    box-shadow: 0 3px 10px rgba(73, 52, 119, 0.1);
+}
+
+.art-card h3 {
+    margin-top: 0;
+    padding-right: 90px;
+    color: var(--deep);
+}
+
+.art-card p {
+    margin-bottom: 0;
+}
+
+.card-status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--light);
+    color: var(--deep);
+    font-size: 11px;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+/* EXHIBITION SCHEDULE */
+.schedule {
+    position: relative;
+    margin: 20px 0;
+    padding: 5px 0 5px 28px;
+    border-left: 3px solid var(--accent);
+}
+
+.schedule-item {
+    position: relative;
+    background: white;
+    margin: 0 0 14px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 7px rgba(73, 52, 119, 0.08);
+}
+
+.schedule-item::before {
+    content: "";
+    position: absolute;
+    left: -37px;
+    top: 17px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--background);
+}
+
+.schedule-item strong {
+    color: var(--primary);
+}
+
+/* REGISTRATION FORM */
+.form-section {
+    position: relative;
+    width: 90%;
+    max-width: 550px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(73, 52, 119, 0.1);
+}
+
+.form-section h2 {
+    color: var(--primary);
+}
+
+.form-section label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+    width: 100%;
+    padding: 9px;
+    margin: 5px 0 15px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fcfaff;
+    color: var(--text);
+    font: inherit;
+}
+
+.form-section input:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+    outline: 2px solid var(--accent);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: 0;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: var(--deep);
+}
+
+.form-feedback {
+    font-size: 14px;
+    margin: 10px 0 0;
+    color: #9b263e;
+}
+
+.form-feedback.success {
+    background: #e7f4e8;
+    color: #216b2b;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* DOM INTERACTIONS */
+.dom-section {
+    background: white;
+    padding: 18px;
+    margin: 24px 0;
+    border-radius: 8px;
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 3px 10px rgba(73, 52, 119, 0.1);
+}
+
+.dom-section h2,
+.dom-section h3 {
+    color: var(--primary);
+}
+
+.dom-control {
+    margin: 12px 0;
+}
+
+.dom-control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.dom-control input,
+.dom-control select {
+    width: 100%;
+    max-width: 420px;
+    padding: 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fcfaff;
+    color: var(--text);
+    font: inherit;
+}
+
+.dom-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: var(--light);
+    color: var(--deep);
+}
+
+.dom-message.success {
+    background: #e7f4e8;
+    color: #216b2b;
+}
+
+.dom-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.dom-feed-item {
+    background: #f7f3ff;
+    border-left: 4px solid var(--accent);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+}
+
+/* FOOTER */
+footer {
+    background: var(--deep);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    clear: both;
+}
+
+footer p {
+    margin: 5px;
+}
+
+footer a {
+    color: #d9bfff;
+    text-decoration: none;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-layout {
+        gap: 16px;
+    }
+
+    .box iframe,
+    .box video {
+        height: 220px;
+    }
+}
+
+/* SMALL TABLETS */
+@media (max-width: 800px) {
+    .page-layout {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        position: static;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        margin-right: 12px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .box {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .hero {
+        height: 250px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 8px;
+    }
+
+    .hero-content {
+        left: 5%;
+        right: 5%;
+        bottom: 20px;
+    }
+
+    .live-tag {
+        top: 12px;
+        right: 12px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .gallery-section {
+        width: 92%;
+    }
+
+    .gallery-open img {
+        aspect-ratio: 16 / 10;
+    }
+
+    .lightbox {
+        padding: 12px;
+    }
+
+    .lightbox-image {
+        max-height: 65vh;
+    }
+
+    .gallery-caption {
+        padding: 10px 12px;
+    }
+
+    .box iframe,
+    .box video {
+        height: 200px;
+    }
+
+    .form-section {
+        width: 92%;
+    }
+}
+
+/* VERY SMALL MOBILE */
+@media (max-width: 380px) {
+    body {
+        font-size: 15px;
+    }
+
+    .hero-content h2 {
+        font-size: 26px;
+    }
+
+    .live-tag {
+        font-size: 10px;
+        padding: 5px 7px;
+    }
+
+    .gallery-grid {
+        gap: 10px;
+    }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    .announcement-track,
+    .banner,
+    .live-tag {
+        animation: none;
+    }
+
+    .gallery-card,
+    .gallery-open img {
+        transition: none;
+    }
+
+    * {
+        scroll-behavior: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>ARTSPHERE</h1>
+    <p>EXPLORE. CREATE. INSPIRE.</p>
+
+    <nav>
+        <a href="#media">Media</a>
+        <a href="#gallery">Gallery</a>
+
+        <div class="dropdown">
+            <button type="button">Explore Art ▼</button>
+
+            <div class="dropdown-content">
+                <a href="#art-info">Art Updates</a>
+                <a href="#application">Join Us</a>
+                <a href="#media">Media Elements</a>
+                <a href="#gallery">Image Gallery</a>
+                <a href="#schedule">Exhibition Schedule</a>
+            </div>
+        </div>
+
+        <a href="#application">Register</a>
+    </nav>
+</header>
+
+<!-- AUDIO -->
+<div class="music">
+    <p>Play Creative Music:</p>
+    <audio controls>
+        <source src="East_Duo_-_Chubina_(mp3.pm).mp3" type="audio/mp3">
+        Your browser does not support audio.
+    </audio>
+</div>
+
+<!-- ANIMATED ANNOUNCEMENT -->
+<div class="announcement">
+    <div class="announcement-track" id="announcement-track">
+        <span>
+            WELCOME TO ARTSPHERE!
+            &nbsp;&nbsp;&nbsp; EXPLORE YOUR CREATIVITY!
+            &nbsp;&nbsp;&nbsp; DISCOVER BEAUTIFUL ARTWORKS!
+            &nbsp;&nbsp;&nbsp; CREATE. INSPIRE. EXPRESS!
+        </span>
+    </div>
+</div>
+
+<!-- ANIMATION CONTROLS -->
+<div class="animation-controls">
+    <button type="button" id="pause-btn">Pause Animation</button>
+    <button type="button" id="play-btn">Play Animation</button>
+    <button type="button" id="restart-btn">Restart Animation</button>
+</div>
+
+<!-- HERO BANNER -->
+<section class="hero">
+    <img
+        class="banner"
+        src="art.jpeg"
+        alt="Artist painting on a canvas">
+
+    <span class="live-tag">CREATIVITY LIVE</span>
+
+    <div class="hero-content">
+        <h2>LET YOUR<br>IMAGINATION FLOW.</h2>
+        <p>Discover Art. Express Yourself. Inspire the World.</p>
+    </div>
+</section>
+
+<!-- MAIN PAGE LAYOUT -->
+<div class="page-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>ARTSPHERE Hub</h2>
+
+        <p>
+            Welcome to ARTSPHERE, a creative space for art lovers,
+            artists and imagination.
+        </p>
+
+        <a href="#media">Media Elements</a>
+        <a href="#gallery">Image Gallery</a>
+        <a href="#art-info">Art Updates</a>
+        <a href="#schedule">Exhibition Schedule</a>
+        <a href="#application">Join Our Community</a>
+        <a href="#dom-lab">DOM Interactions</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- MEDIA SECTION -->
+        <section class="media" id="media">
+
+            <h2 class="section-heading">Inside ARTSPHERE</h2>
+
+            <!-- STATISTICS -->
+            <div class="feature-strip">
+                <div class="feature">
+                    <strong>6</strong>
+                    <span>Art Categories</span>
+                </div>
+
+                <div class="feature">
+                    <strong>100+</strong>
+                    <span>Creative Ideas</span>
+                </div>
+
+                <div class="feature">
+                    <strong>∞</strong>
+                    <span>Ways to Express</span>
+                </div>
+            </div>
+
+            <!-- PDF -->
+            <div class="box">
+                <span class="media-tag">GUIDE</span>
+                <h3>Art Guide</h3>
+
+                <iframe
+                    src="art1.pdf"
+                    title="Art Guide PDF">
+                </iframe>
+            </div>
+
+            <!-- YOUTUBE VIDEO -->
+            <div class="box">
+                <span class="media-tag">VIDEO</span>
+                <h3>Art Inspiration</h3>
+
+                <iframe
+                    src="https://www.youtube.com/embed/D52YCwKeu6s"
+                    title="Art Inspiration Video"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- LOCAL VIDEO -->
+            <div class="box">
+                <span class="media-tag">ART FILM</span>
+                <h3>Creative Process</h3>
+
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support video.
+                </video>
+            </div>
+
+            <!-- GOOGLE MAPS -->
+            <div class="box">
+                <span class="media-tag">LOCATION</span>
+                <h3>National Gallery of Modern Art</h3>
+
+                <iframe
+                    src="https://www.google.com/maps?q=National+Gallery+of+Modern+Art+Bengaluru&output=embed"
+                    title="National Gallery of Modern Art Location"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- IMAGE GALLERY -->
+        <section class="gallery-section" id="gallery">
+
+            <h2 class="section-heading">
+                ARTSPHERE Creative Gallery
+            </h2>
+
+            <p class="gallery-intro">
+                Explore a collection of artistic creations.
+                Select any image to view it in a larger format.
+            </p>
+
+            <div class="gallery-grid">
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img1.jpg"
+                        data-caption="Abstract Art">
+
+                        <img
+                            src="img1.jpg"
+                            alt="Abstract painting"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Abstract Art</p>
+                </article>
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img2.png"
+                        data-caption="Classic Painting">
+
+                        <img
+                            src="img2.png"
+                            alt="Classic painting"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Classic Painting</p>
+                </article>
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img3.jpg"
+                        data-caption="Colourful Expressions">
+
+                        <img
+                            src="img3.jpg"
+                            alt="Colourful artwork"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Colourful Expressions</p>
+                </article>
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img4.png"
+                        data-caption="Modern Art">
+
+                        <img
+                            src="img4.png"
+                            alt="Modern artwork"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Modern Art</p>
+                </article>
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img5.png"
+                        data-caption="Creative Process">
+
+                        <img
+                            src="img5.png"
+                            alt="Artist painting"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Creative Process</p>
+                </article>
+
+                <article class="gallery-card">
+                    <button class="gallery-open" type="button"
+                        data-full="img6.png"
+                        data-caption="Art Collection">
+
+                        <img
+                            src="img6.png"
+                            alt="Art collection"
+                            loading="lazy"
+                            width="600"
+                            height="450">
+                    </button>
+                    <p class="gallery-caption">Art Collection</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox"
+            id="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded gallery image"
+            aria-hidden="true">
+
+            <button
+                class="lightbox-close"
+                id="lightbox-close"
+                type="button"
+                aria-label="Close image viewer">
+                &times;
+            </button>
+
+            <div class="lightbox-content">
+                <img
+                    class="lightbox-image"
+                    id="lightbox-image"
+                    src=""
+                    alt="">
+
+                <p
+                    class="lightbox-caption"
+                    id="lightbox-caption">
+                </p>
+            </div>
+        </div>
+
+        <!-- ART UPDATES -->
+        <section id="art-info">
+
+            <h2 class="section-heading">Creative Updates</h2>
+
+            <article class="art-card">
+                <span class="card-status">FEATURED</span>
+                <h3>Explore the World of Art</h3>
+                <p>
+                    Discover different forms of artistic expression,
+                    from traditional paintings to modern digital artwork.
+                    Every creation tells a unique story.
+                </p>
+            </article>
+
+            <article class="art-card">
+                <span class="card-status">COMMUNITY</span>
+                <h3>Join the Creative Community</h3>
+                <p>
+                    Connect with fellow art enthusiasts, share ideas
+                    and explore new ways to express your creativity.
+                </p>
+            </article>
+
+            <article class="art-card">
+                <span class="card-status">EXHIBITION</span>
+                <h3>Discover New Artists</h3>
+                <p>
+                    Explore inspiring creations from emerging artists
+                    and experience different artistic styles.
+                </p>
+            </article>
+
+            <!-- EXHIBITION SCHEDULE -->
+            <h2 class="section-heading" id="schedule">
+                Art Exhibition Schedule
+            </h2>
+
+            <div class="schedule">
+
+                <div class="schedule-item">
+                    <strong>10:00 AM — Gallery Opening</strong>
+                    <p>Welcome visitors to the art exhibition.</p>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>11:00 AM — Painting Showcase</strong>
+                    <p>Explore a collection of beautiful paintings.</p>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>12:30 PM — Artist Interaction</strong>
+                    <p>Meet artists and discover their creative process.</p>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>02:00 PM — Digital Art Showcase</strong>
+                    <p>Experience modern digital illustrations.</p>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>04:00 PM — Exhibition Closing</strong>
+                    <p>Conclude the event with a celebration of creativity.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- REGISTRATION FORM -->
+        <section class="form-section" id="application">
+
+            <h2>Artist Registration Form</h2>
+
+            <form id="registration-form">
+
+                <label for="full-name">Full Name</label>
+                <input
+                    id="full-name"
+                    name="full-name"
+                    type="text"
+                    placeholder="Enter your name"
+                    required>
+
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required>
+
+                <label for="role">Art Specialisation</label>
+                <select id="role" name="role" required>
+                    <option value="">Select your specialisation</option>
+                    <option value="Painter">Painter</option>
+                    <option value="Sketch Artist">Sketch Artist</option>
+                    <option value="Digital Artist">Digital Artist</option>
+                    <option value="Sculptor">Sculptor</option>
+                    <option value="Photographer">Photographer</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="reason">
+                    Why do you want to join ARTSPHERE?
+                </label>
+
+                <textarea
+                    id="reason"
+                    name="reason"
+                    rows="4"
+                    placeholder="Tell us about your artistic interests"
+                    required></textarea>
+
+                <button type="submit" id="register-btn">
+                    Register Now
+                </button>
+
+                <p
+                    class="form-feedback"
+                    id="registration-feedback"
+                    aria-live="polite">
+                </p>
+
+            </form>
+        </section>
+
+        <!-- PRACTICUM 10: DOM INTERACTIONS -->
+        <section class="dom-section"
+            id="dom-lab"
+            aria-labelledby="dom-lab-title">
+
+            <h2 id="dom-lab-title">
+                ARTSPHERE DOM Interaction Centre
+            </h2>
+
+            <p>
+                Explore interactive gallery controls and creative updates.
+            </p>
+
+            <h3>1. Update Gallery Information</h3>
+
+            <div class="dom-control">
+                <label for="dom-score">
+                    Enter a gallery announcement:
+                </label>
+
+                <input
+                    type="text"
+                    id="dom-score"
+                    placeholder="Example: New artwork added!">
+            </div>
+
+            <div class="dom-actions">
+                <button type="button" id="update-score-btn">
+                    Update Announcement
+                </button>
+
+                <button type="button" id="reset-score-btn">
+                    Reset Announcement
+                </button>
+            </div>
+
+            <p
+                class="dom-message"
+                id="live-score"
+                aria-live="polite">
+                Gallery Announcement: Waiting for an update
+            </p>
+
+            <h3>2. Change Gallery Status</h3>
+
+            <div class="dom-control">
+                <label for="team-status">
+                    Choose the gallery status:
+                </label>
+
+                <select id="team-status">
+                    <option value="Gallery Open for Visitors">
+                        Gallery Open for Visitors
+                    </option>
+                    <option value="New Artwork Being Added">
+                        New Artwork Being Added
+                    </option>
+                    <option value="Exhibition in Progress">
+                        Exhibition in Progress
+                    </option>
+                    <option value="Gallery Closed">
+                        Gallery Closed
+                    </option>
+                </select>
+            </div>
+
+            <p
+                class="dom-message"
+                id="status-display"
+                aria-live="polite">
+                Gallery Status: Gallery Open for Visitors
+            </p>
+
+            <h3>3. Add a Creative Update</h3>
+
+            <div class="dom-control">
+                <label for="dom-update">
+                    Enter a short art update:
+                </label>
+
+                <input
+                    type="text"
+                    id="dom-update"
+                    placeholder="Type a creative update">
+            </div>
+
+            <div class="dom-actions">
+                <button type="button" id="add-update-btn">
+                    Add Update
+                </button>
+
+                <button type="button" id="clear-updates-btn">
+                    Clear Updates
+                </button>
+            </div>
+
+            <div id="dom-update-feed" aria-live="polite">
+                <p class="dom-feed-item">
+                    Your creative updates will appear here.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 ARTSPHERE | All Rights Reserved</p>
+    <p>Explore. Create. Inspire.</p>
+    <p>Where Imagination Becomes Art.</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+/* =========================================
+   PRACTICUM 9: ANIMATION CONTROLS
+========================================= */
+
+const announcement =
+    document.getElementById("announcement-track");
+
+const pauseButton =
+    document.getElementById("pause-btn");
+
+const playButton =
+    document.getElementById("play-btn");
+
+const restartButton =
+    document.getElementById("restart-btn");
+
+/* PAUSE ANIMATION */
+pauseButton.addEventListener("click", function() {
+    announcement.style.animationPlayState = "paused";
+});
+
+/* PLAY ANIMATION */
+playButton.addEventListener("click", function() {
+    announcement.style.animationPlayState = "running";
+});
+
+/* RESTART ANIMATION */
+restartButton.addEventListener("click", function() {
+    announcement.style.animation = "none";
+
+    void announcement.offsetWidth;
+
+    announcement.style.animation =
+        "slideText 14s linear infinite";
+
+    announcement.style.animationPlayState = "running";
+});
+
+
+/* =========================================
+   IMAGE GALLERY LIGHTBOX
+========================================= */
+
+const galleryButtons =
+    document.querySelectorAll(".gallery-open");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImage =
+    document.getElementById("lightbox-image");
+
+const lightboxCaption =
+    document.getElementById("lightbox-caption");
+
+const closeLightbox =
+    document.getElementById("lightbox-close");
+
+let previousFocus = null;
+
+/* OPEN LIGHTBOX */
+function openLightbox(button) {
+
+    previousFocus = button;
+
+    lightboxImage.src = button.dataset.full;
+
+    lightboxImage.alt =
+        button.querySelector("img").alt;
+
+    lightboxCaption.textContent =
+        button.dataset.caption;
+
+    lightbox.classList.add("open");
+
+    lightbox.setAttribute("aria-hidden", "false");
+
+    closeLightbox.focus();
+}
+
+/* CLOSE LIGHTBOX */
+function hideLightbox() {
+
+    lightbox.classList.remove("open");
+
+    lightbox.setAttribute("aria-hidden", "true");
+
+    lightboxImage.src = "";
+
+    if (previousFocus) {
+        previousFocus.focus();
+    }
+}
+
+/* GALLERY CLICK EVENT */
+galleryButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+        openLightbox(button);
+    });
+
+});
+
+/* CLOSE BUTTON */
+closeLightbox.addEventListener("click", hideLightbox);
+
+/* CLICK OUTSIDE TO CLOSE */
+lightbox.addEventListener("click", function(event) {
+
+    if (event.target === lightbox) {
+        hideLightbox();
+    }
+
+});
+
+/* ESCAPE KEY TO CLOSE */
+document.addEventListener("keydown", function(event) {
+
+    if (
+        event.key === "Escape" &&
+        lightbox.classList.contains("open")
+    ) {
+        hideLightbox();
+    }
+
+});
+
+
+/* =========================================
+   PRACTICUM 10: DOM INTERACTIONS
+========================================= */
+
+/* SELECTING DOM ELEMENTS */
+
+const scoreInput =
+    document.getElementById("dom-score");
+
+const scoreDisplay =
+    document.querySelector("#live-score");
+
+const updateScoreButton =
+    document.getElementById("update-score-btn");
+
+const resetScoreButton =
+    document.getElementById("reset-score-btn");
+
+const teamStatus =
+    document.getElementById("team-status");
+
+const statusDisplay =
+    document.querySelector("#status-display");
+
+const updateInput =
+    document.getElementById("dom-update");
+
+const updateFeed =
+    document.querySelector("#dom-update-feed");
+
+const addUpdateButton =
+    document.getElementById("add-update-btn");
+
+const clearUpdatesButton =
+    document.getElementById("clear-updates-btn");
+
+
+/* UPDATE GALLERY ANNOUNCEMENT */
+
+updateScoreButton.addEventListener("click", function() {
+
+    const enteredAnnouncement = scoreInput.value.trim();
+
+    if (enteredAnnouncement === "") {
+
+        scoreDisplay.textContent =
+            "Please enter an announcement before updating.";
+
+        scoreDisplay.classList.remove("success");
+
+        return;
+    }
+
+    scoreDisplay.textContent =
+        "Gallery Announcement: " + enteredAnnouncement;
+
+    scoreDisplay.classList.add("success");
+
+});
+
+
+/* RESET GALLERY ANNOUNCEMENT */
+
+resetScoreButton.addEventListener("click", function() {
+
+    scoreInput.value = "";
+
+    scoreDisplay.textContent =
+        "Gallery Announcement: Waiting for an update";
+
+    scoreDisplay.classList.remove("success");
+
+});
+
+
+/* CHANGE GALLERY STATUS */
+
+teamStatus.addEventListener("change", function() {
+
+    statusDisplay.textContent =
+        "Gallery Status: " + teamStatus.value;
+
+    statusDisplay.style.borderLeft =
+        "4px solid #8b5cc7";
+
+});
+
+
+/* INPUT EVENT */
+
+updateInput.addEventListener("input", function() {
+
+    if (updateInput.value.trim().length > 0) {
+        updateInput.style.borderColor = "#8b5cc7";
+    } else {
+        updateInput.style.borderColor = "#ded2f0";
+    }
+
+});
+
+
+/* ADD CREATIVE UPDATE */
+
+addUpdateButton.addEventListener("click", function() {
+
+    const updateText = updateInput.value.trim();
+
+    if (updateText === "") {
+
+        updateInput.setAttribute("aria-invalid", "true");
+
+        updateInput.focus();
+
+        return;
+    }
+
+    updateInput.removeAttribute("aria-invalid");
+
+    /* createElement() creates a new DOM element. */
+    const newUpdate = document.createElement("p");
+
+    /* textContent safely inserts text into the page. */
+    newUpdate.textContent = updateText;
+
+    newUpdate.classList.add("dom-feed-item");
+
+    /* appendChild() adds the element to the page. */
+    updateFeed.appendChild(newUpdate);
+
+    updateInput.value = "";
+
+    updateInput.style.borderColor = "#ded2f0";
+
+});
+
+
+/* CLEAR CREATIVE UPDATES */
+
+clearUpdatesButton.addEventListener("click", function() {
+
+    const emptyMessage = document.createElement("p");
+
+    emptyMessage.className = "dom-feed-item";
+
+    emptyMessage.textContent =
+        "No creative updates available.";
+
+    updateFeed.replaceChildren(emptyMessage);
+
+});
+
+
+/* =========================================
+   PRACTICUM 10: REGISTRATION FORM VALIDATION
+========================================= */
+
+const registrationForm =
+    document.getElementById("registration-form");
+
+const registrationFeedback =
+    document.querySelector("#registration-feedback");
+
+const fullNameInput =
+    document.getElementById("full-name");
+
+const emailInput =
+    document.getElementById("email");
+
+const artRole =
+    document.getElementById("role");
+
+const reasonInput =
+    document.getElementById("reason");
+
+
+/* VALIDATE NAME WHILE TYPING */
+
+fullNameInput.addEventListener("input", function() {
+
+    if (fullNameInput.value.trim().length >= 2) {
+        fullNameInput.style.borderColor = "green";
+    } else {
+        fullNameInput.style.borderColor = "#8b5cc7";
+    }
+
+});
+
+
+/* VALIDATE EMAIL WHILE TYPING */
+
+emailInput.addEventListener("input", function() {
+
+    emailInput.style.borderColor =
+        emailInput.validity.valid ? "green" : "#8b5cc7";
+
+});
+
+
+/* FORM SUBMISSION */
+
+registrationForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const enteredName = fullNameInput.value.trim();
+
+    const enteredEmail = emailInput.value.trim();
+
+    const enteredRole = artRole.value;
+
+    const enteredReason = reasonInput.value.trim();
+
+    registrationFeedback.classList.remove("success");
+
+    if (enteredName.length < 2) {
+
+        registrationFeedback.textContent =
+            "Please enter a valid name (at least 2 characters).";
+
+        fullNameInput.focus();
+
+        return;
+    }
+
+    if (
+        enteredEmail === "" ||
+        !emailInput.validity.valid
+    ) {
+
+        registrationFeedback.textContent =
+            "Please enter a valid email address.";
+
+        emailInput.focus();
+
+        return;
+    }
+
+    if (enteredRole === "") {
+
+        registrationFeedback.textContent =
+            "Please select your art specialisation.";
+
+        artRole.focus();
+
+        return;
+    }
+
+    if (enteredReason === "") {
+
+        registrationFeedback.textContent =
+            "Please tell us why you want to join ARTSPHERE.";
+
+        reasonInput.focus();
+
+        return;
+    }
+
+    registrationFeedback.textContent =
+        "Thank you, " + enteredName +
+        "! Your artist registration details are ready. " +
+        "Selected specialisation: " + enteredRole + ".";
+
+    registrationFeedback.classList.add("success");
+
+    /* RESET FORM AFTER CONFIRMATION */
+    registrationForm.reset();
+
+    fullNameInput.style.borderColor = "#ded2f0";
+
+    emailInput.style.borderColor = "#ded2f0";
+
+});
+
+</script>
+
+</body>
+</html>
